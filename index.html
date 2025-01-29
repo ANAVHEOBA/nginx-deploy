@@ -5,25 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevOps Stage 0</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #000;
-            color: #fff;
+            background: linear-gradient(-45deg, #1a1c2e, #4a1c66, #1c2e4a, #2d1c4a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
         }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
         .message {
-            font-size: 24px;
-            text-align: center;
+            font-size: 28px;
+            color: transparent;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #a06cd5);
+            background-size: 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: shine 5s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* Animated orbs in background */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .orb-1 {
+            top: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: #ff6b6b;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: #4ecdc4;
+            animation: orbFloat 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        /* Shimmer effect */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .message {
+                font-size: 24px;
+            }
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                font-size: 20px;
+            }
+            .container {
+                margin: 0.5rem;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="message">
-        Welcome to DevOps Stage 0 - Abraham Anavheoba/anavheoba17
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="container">
+        <div class="message">
+            Welcome to DevOps Stage 0 - Abraham Anavheoba/anavheoba17
+        </div>
     </div>
 </body>
 </html>
